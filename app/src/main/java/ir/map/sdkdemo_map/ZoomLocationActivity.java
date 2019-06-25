@@ -12,9 +12,10 @@ import ir.map.sdk_map.wrapper.SupportMaptexFragment;
 public class ZoomLocationActivity extends AppCompatActivity {
 
     //Change the following constants for getting your own location
-    public static final double FOCUSED_LATTITUDE = 35.6964895;
-    public static final double FOCUSED_LONGITUDE = 51.279745;
-    public static final int FOCUSED_ZOOM_LEVEL = 12;
+    public static final double FOCUSED_LATITUDE = 35.732521;
+    public static final double FOCUSED_LONGITUDE = 51.422575;
+    public static final int FOCUSED_ZOOM_LEVEL = 17;
+
     private MaptexMap maptexMap;
 
     @Override
@@ -22,17 +23,17 @@ public class ZoomLocationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zoom_location);
 
-        ((SupportMaptexFragment) getSupportFragmentManager().findFragmentById(R.id.myMapView))
-                .getMaptexAsync(new OnMaptexReadyCallback() {
-                    @Override
-                    public void onMaptexReady(MaptexMap map) {
-                        maptexMap = map;
-                        if (maptexMap != null) {
-                            maptexMap.moveCamera(MaptexCameraUpdateFactory
-                                    .newLatLngZoom(new MaptexLatLng(FOCUSED_LATTITUDE, FOCUSED_LONGITUDE),
-                                            FOCUSED_ZOOM_LEVEL));
-                        }
-                    }
-                });
+        SupportMaptexFragment supportMapFragment = (SupportMaptexFragment) getSupportFragmentManager().findFragmentById(R.id.myMapView);
+        supportMapFragment.getMaptexAsync(new OnMaptexReadyCallback() {
+            @Override
+            public void onMaptexReady(MaptexMap map) {
+                ZoomLocationActivity.this.maptexMap = map;
+                if (ZoomLocationActivity.this.maptexMap != null) {
+                    ZoomLocationActivity.this.maptexMap.moveCamera(MaptexCameraUpdateFactory
+                            .newLatLngZoom(new MaptexLatLng(FOCUSED_LATITUDE, FOCUSED_LONGITUDE),
+                                    FOCUSED_ZOOM_LEVEL));
+                }
+            }
+        });
     }
 }

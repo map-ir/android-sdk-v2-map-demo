@@ -15,10 +15,10 @@ import ir.map.sdk_map.wrapper.SupportMaptexFragment;
 
 public class AddPolygonActivity extends AppCompatActivity {
 
-    private static final MaptexLatLng ARAK = new MaptexLatLng(34.0954, 49.7013);
-    private static final MaptexLatLng SHIRAZ = new MaptexLatLng(29.591, 52.5837);
-    private static final MaptexLatLng MASHHAD = new MaptexLatLng(36.2605, 59.6168);
-    private static final MaptexLatLng RASHT = new MaptexLatLng(37.2682, 49.5891);
+    private MaptexLatLng ARAK = new MaptexLatLng(34.0954, 49.7013);
+    private MaptexLatLng SHIRAZ = new MaptexLatLng(29.591, 52.5837);
+    private MaptexLatLng RASHT = new MaptexLatLng(37.2682, 49.5891);
+
     private List polygonPointList = new ArrayList<>();
     private MaptexMap maptexMap;
 
@@ -27,27 +27,27 @@ public class AddPolygonActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_polygon);
 
-        ((SupportMaptexFragment) getSupportFragmentManager().findFragmentById(R.id.myMapView))
-                .getMaptexAsync(new OnMaptexReadyCallback() {
-                    @Override
-                    public void onMaptexReady(MaptexMap map) {
-                        maptexMap = map;
-                        // Check if we were successful in obtaining the map.
-                        if (maptexMap != null) {
+        SupportMaptexFragment supportMapFragment =
+                (SupportMaptexFragment) getSupportFragmentManager().findFragmentById(R.id.myMapView);
 
-                            polygonPointList.add(ARAK);
-                            polygonPointList.add(SHIRAZ);
-                            polygonPointList.add(MASHHAD);
-                            polygonPointList.add(RASHT);
+        supportMapFragment.getMaptexAsync(new OnMaptexReadyCallback() {
+            @Override
+            public void onMaptexReady(MaptexMap map) {
+                AddPolygonActivity.this.maptexMap = map;
+                if (AddPolygonActivity.this.maptexMap != null) { // Checks if we were successful in obtaining the map.
 
-                            maptexMap.addPolygon(new MaptexPolygonOptions()
-                                    .addAll(polygonPointList)
-                                    .fillColor(Color.TRANSPARENT)
-                                    .strokeColor(Color.BLUE)
-                                    .strokeWidth(5));
+                    AddPolygonActivity.this.polygonPointList.add(ARAK);
+                    AddPolygonActivity.this.polygonPointList.add(SHIRAZ);
+                    AddPolygonActivity.this.polygonPointList.add(RASHT);
 
-                        }
-                    }
-                });
+                    AddPolygonActivity.this.maptexMap.addPolygon(new MaptexPolygonOptions()
+                            .addAll(AddPolygonActivity.this.polygonPointList)
+                            .fillColor(Color.TRANSPARENT)
+                            .strokeColor(Color.BLUE)
+                            .strokeWidth(5));
+
+                }
+            }
+        });
     }
 }

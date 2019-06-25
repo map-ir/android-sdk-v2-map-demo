@@ -5,11 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".BasicMapActivity">
 
-
     <fragment
         android:id="@+id/myMapView"
         class="ir.map.sdk_map.wrapper.SupportMaptexFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></fragment>
+        android:layout_height="match_parent" />
 
 </android.support.constraint.ConstraintLayout>
