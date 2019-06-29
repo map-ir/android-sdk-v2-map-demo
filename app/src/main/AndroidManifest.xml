@@ -32,17 +32,29 @@
 
         </activity>
 
-        <activity android:name=".BasicMapActivity" />
+        <activity
+            android:name=".BasicMapActivity"
+            android:label="Basic Map" />
 
-        <activity android:name=".CurrentLocationActivity" />
+        <activity
+            android:name=".CurrentLocationActivity"
+            android:label="Current Location" />
 
-        <activity android:name=".ZoomLocationActivity" />
+        <activity
+            android:name=".ZoomLocationActivity"
+            android:label="Zoom Location" />
 
-        <activity android:name=".AddMarkerActivity" />
+        <activity
+            android:name=".AddMarkerActivity"
+            android:label="Add Marker" />
 
-        <activity android:name=".AddPolylineActivity" />
+        <activity
+            android:name=".AddPolylineActivity"
+            android:label="Add Polyline" />
 
-        <activity android:name=".AddPolygonActivity" />
+        <activity
+            android:name=".AddPolygonActivity"
+            android:label="Add Polygon" />
 
     </application>
 
